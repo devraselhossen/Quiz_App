@@ -1,6 +1,8 @@
-// ignore_for_file: unused_local_variable, prefer_const_constructors, deprecated_member_use, prefer_const_literals_to_create_immutables, avoid_print
+// ignore_for_file: unused_local_variable, prefer_const_constructors, deprecated_member_use, prefer_const_literals_to_create_immutables, avoid_print, unused_element
 
 import 'package:flutter/material.dart';
+import 'package:leason_2/answer.dart';
+import 'package:leason_2/question.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -22,41 +24,20 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     var question = [
-      'What\'s your favourite colour?',
+      'What\'s your favourite color?',
       'What\'s your favourite animal?',
     ];
     return Scaffold(
         appBar: AppBar(
-          title: Text("my First App"),
+          title: Text("My First App"),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView(
-            children: [
-              Text(question[_questionIndex]),
-              SizedBox(
-                height: 10,
-              ),
-              RaisedButton(
-                onPressed: _answerQuestion,
-                child: Text("Answer 1"),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              RaisedButton(
-                onPressed: _answerQuestion,
-                child: Text("Answer 2"),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              RaisedButton(
-                onPressed: _answerQuestion,
-                child: Text("Answer 3"),
-              ),
-            ],
-          ),
+        body: ListView(
+          children: [
+            Question(question[_questionIndex]),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
+          ],
         ));
   }
 }
