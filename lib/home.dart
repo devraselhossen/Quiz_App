@@ -12,6 +12,21 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final questions = const [
+    {
+      'questionText': 'What\'s your favourite color?',
+      'answers': ['Black', 'Green', 'Blue', 'White']
+    },
+    {
+      'questionText': 'What\'s your favourite animal?',
+      'answers': ['Tiger', 'Lion', 'Elephant', 'Snake']
+    },
+    {
+      'questionText': 'What\'s your favourite Player?',
+      'answers': ['Tamim', 'Shakib', 'Mahmudullah', 'Musfiq']
+    },
+  ];
+
   var _questionIndex = 0;
 
   void _answerQuestion() {
@@ -19,25 +34,31 @@ class _HomeState extends State<Home> {
       _questionIndex = _questionIndex + 1;
     });
     print(_questionIndex);
+    if (_questionIndex < questions.length) {
+      print("We have more question");
+    } else {
+      print("No more question");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    var question = [
-      'What\'s your favourite color?',
-      'What\'s your favourite animal?',
-    ];
     return Scaffold(
         appBar: AppBar(
           title: Text("My First App"),
         ),
-        body: ListView(
-          children: [
-            Question(question[_questionIndex]),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
-          ],
-        ));
+        body: _questionIndex < questions.length
+            ? ListView(
+                children: [
+                  Question(questions[_questionIndex]['questionText'] as String),
+                  ...(questions[_questionIndex]['answers'] as List<String>)
+                      .map((answer) {
+                    return Answer(_answerQuestion, answer);
+                  }).toList()
+                ],
+              )
+            : Center(
+                child: Text("You did it!"),
+              ));
   }
 }
