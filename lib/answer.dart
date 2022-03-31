@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 
 class Answer extends StatelessWidget {
-  
   final VoidCallback _selectHandeler;
   final String _answerText;
 
@@ -16,6 +15,7 @@ class Answer extends StatelessWidget {
       child: Container(
         child: RaisedButton(
           color: Color.fromARGB(255, 13, 212, 46),
+          textColor: Colors.white,
           onPressed: _selectHandeler,
           child: Text(_answerText),
         ),

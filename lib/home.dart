@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
                 ],
               )
             : Center(
-                child: Text("You did it!"),
+                child: Text("Congratulation!"),
               ));
   }
 }
