@@ -44,18 +44,24 @@ class _HomeState extends State<Home> {
 
   var _questionIndex = 0;
   var _totalScore = 0;
+  var _firstScore = 0;
+  var _secondScore = 0;
+  var _thirdScore = 0;
 
   void _answerQuestion(int score) {
     _totalScore += score;
     setState(() {
-      _questionIndex = _questionIndex + 1;
+      if (_questionIndex == 0) {
+        _firstScore = score;
+      } 
+      else if (_questionIndex == 1) {
+        _secondScore = score;
+      }
+      else if (_questionIndex == 2) {
+        _thirdScore = score;
+      }
+      _questionIndex++;
     });
-    print(_questionIndex);
-    if (_questionIndex < _questions.length) {
-      print("We have more question");
-    } else {
-      print("No more question");
-    }
   }
 
   @override
@@ -69,6 +75,10 @@ class _HomeState extends State<Home> {
                 answerQuestion: _answerQuestion,
                 questionIndex: _questionIndex,
                 questions: _questions)
-            : Result(_totalScore));
+            : Result(
+                resultScore: _totalScore,
+                resultFirstScore: _firstScore,
+                resultThirdScore: _thirdScore,
+                resultSecondScore: _secondScore));
   }
 }

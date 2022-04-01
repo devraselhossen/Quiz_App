@@ -3,23 +3,26 @@
 import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
-
   final int resultScore;
-  
-  Result(this.resultScore);
+  final int resultThirdScore;
+  final int resultFirstScore;
+  final int resultSecondScore;
 
-  String get resultPhase{
+  Result(
+      {required this.resultScore,
+      required this.resultThirdScore,
+      required this.resultFirstScore,
+      required this.resultSecondScore});
+
+  String get resultPhase {
     String resultText;
-    if (resultScore <= 12){
+    if (resultScore <= 12) {
       resultText = "You are osame and inocent!";
-    }
-    else if (resultScore <= 16){
+    } else if (resultScore <= 16) {
       resultText = "Preaty Likable!";
-    }
-    else if (resultScore <= 20){
+    } else if (resultScore <= 20) {
       resultText = "You are Strange?";
-    }
-    else{
+    } else {
       resultText = "You are so bad!";
     }
     return resultText;
@@ -34,14 +37,35 @@ class Result extends StatelessWidget {
         Center(
           child: Text(
             resultPhase,
-            style: TextStyle(fontSize: 35,fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
         ),
         Center(
           child: Text(
-            "Your score : "+resultScore.toString(),
-            style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),
+            "Your score : " + resultScore.toString(),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        Center(
+          child: Text(
+            "Your first score : " + resultFirstScore.toString(),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        Center(
+          child: Text(
+            "Your second score : " + resultSecondScore.toString(),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        Center(
+          child: Text(
+            "Your Last score : " + resultThirdScore.toString(),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
         ),
