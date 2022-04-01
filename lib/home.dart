@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:leason_2/answer.dart';
 import 'package:leason_2/question.dart';
+import 'package:leason_2/quiz.dart';
+import 'package:leason_2/result.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -12,7 +14,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final questions = const [
+  final _questions = const [
     {
       'questionText': 'What\'s your favourite color?',
       'answers': ['Black', 'Green', 'Blue', 'White']
@@ -34,7 +36,7 @@ class _HomeState extends State<Home> {
       _questionIndex = _questionIndex + 1;
     });
     print(_questionIndex);
-    if (_questionIndex < questions.length) {
+    if (_questionIndex < _questions.length) {
       print("We have more question");
     } else {
       print("No more question");
@@ -47,18 +49,11 @@ class _HomeState extends State<Home> {
         appBar: AppBar(
           title: Text("My First App"),
         ),
-        body: _questionIndex < questions.length
-            ? ListView(
-                children: [
-                  Question(questions[_questionIndex]['questionText'] as String),
-                  ...(questions[_questionIndex]['answers'] as List<String>)
-                      .map((answer) {
-                    return Answer(_answerQuestion, answer);
-                  }).toList()
-                ],
-              )
-            : Center(
-                child: Text("Congratulation!"),
-              ));
+        body: _questionIndex < _questions.length
+            ? Qiuz(
+                answerQuestion: _answerQuestion,
+                questionIndex: _questionIndex,
+                questions: _questions)
+            : Result());
   }
 }
